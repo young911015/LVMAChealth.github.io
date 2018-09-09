@@ -1,0 +1,1556 @@
+<!DOCTYPE html>
+<html>
+    <!--
+  * Please see the included README.md file for license terms and conditions.
+  -->
+<!--*************************************************
+	* Coded by:										*				
+	* David Young - davidyoung@highspeed.guru    	*
+	* Ver 2.0 9/9/2018								*
+	*************************************************-->
+<?php 
+		define('WP_USE_THEMES', false);
+		require('/home/lvmacapps/public_html/clinicians/wp-blog-header.php');
+?>
+    <head>
+        <link rel="stylesheet" type="text/css" href="media_button_bar/css/media_button_bar.css">
+        <link rel="stylesheet" type="text/css" href="bootstrap/css/bootstrap.min.css">
+        <link rel="stylesheet" href="//code.jquery.com/ui/1.11.1/themes/smoothness/jquery-ui.css">
+        <meta charset="UTF-8">
+        <title>LVMAC Clinicians' Guide</title>
+        <meta http-equiv="Content-type" content="text/html; charset=utf-8">
+
+        <!--
+  * The "meta viewport" tag (below) helps your app size appropriately to a device's screen.
+  * Note that the meta viewport approach is being phased out in favor of the @viewport CSS rule.
+  * For a quick overview of both, see this article:
+  *   http://webdesign.tutsplus.com/tutorials/htmlcss-tutorials/quick-tip-dont-forget-the-viewport-meta-tag
+  * To see what happens, try the app on a real device with and without a "meta viewport" tag.
+-->
+
+        <!-- <meta name="viewport" content="width=device-width, initial-scale=1"> -->
+        <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+        <!-- <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=yes, minimum-scale=1, maximum-scale=2"> -->
+
+        <style>
+            /* following three (cascaded) are equivalent to above three meta viewport statements */
+            /* see http://www.quirksmode.org/blog/archives/2014/05/html5_dev_conf.html */
+            /* see http://dev.w3.org/csswg/css-device-adapt/ */
+                @-ms-viewport { width: 100vw ; zoom: 100% ; }                           @viewport { width: 100vw ; zoom: 100% ; }
+                @-ms-viewport { user-zoom: fixed ; }                                    @viewport { user-zoom: fixed ; }
+                /*@-ms-viewport { user-zoom: zoom ; min-zoom: 100% ; max-zoom: 200% ; }   @viewport { user-zoom: zoom ; min-zoom: 100% ; max-zoom: 200% ; }*/
+        </style>
+
+        <link rel="stylesheet" href="css/old-android.css">
+        <link rel="stylesheet" type="text/css" href="css/index_main.less.css" class="main-less">
+
+        <!-- IMPORTANT: Do not include your weinre script tag as part of your release builds! -->
+        <!-- Place your remote debugging (weinre) script URL from the Test tab here, if it does not work below -->
+        <!-- <script src="http://debug-software.intel.com/target/target-script-min.js#insertabiglongfunkynumberfromthexdkstesttab"></script> -->
+
+        <!-- Most third-party libraries should go here. References (below) are just examples to give you the general idea... -->
+        <!-- <script src="lib/ft/fastclick.js"></script> -->
+
+        <script src="intelxdk.js"></script>
+        <!-- phantom library, needed for XDK "legacy" container api calls -->
+        <script src="cordova.js"></script>
+        <!-- phantom library, needed for Cordova api calls -->
+        <script src="xhr.js"></script>
+        <!-- phantom library, needed for XDK "legacy" container CORS -->
+
+        <script src="js/app.js"></script>
+        <script src="js/init-app.js"></script>
+        <script src="js/init-dev.js"></script>
+        <script type="application/javascript" src="js/jquery.min.js"></script>
+        <script type="application/javascript" src="marginal/marginal-position.min.js"></script>
+        <script type="application/javascript" src="sidebar/js/jquery.event.move.js"></script>
+        <script type="application/javascript" src="sidebar/js/jquery.event.swipe.js"></script>
+        <script type="application/javascript" src="sidebar/js/sidebar.js"></script>
+        <script type="application/javascript" src="sidebar/js/swipe.js"></script>
+        <script type="application/javascript" src="bootstrap/js/bootstrap.min.js"></script>
+        <script type="application/javascript" src="js/index_user_scripts.js"></script>
+        <script type="application/javascript" src="js/bs_subpage.js"></script>
+        <script type="application/javascript" src="admob/admob.js"></script>
+        <script type="application/javascript" src="justgage/js/raphael.min.js"></script>
+        <script type="application/javascript" src="justgage/js/justgage.min.js"></script>
+        <script type="application/javascript" src="justgage/gauges.js"></script>
+        <script type="application/javascript" src="modal/js/modal.js"></script>
+    </head>
+
+    <body>
+	<script>
+	(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+	(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+	m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+	})(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+	ga('create', 'UA-53645881-2', 'auto');
+	ga('send', 'pageview');
+
+	</script>
+        <!-- IMPORTANT: Do not include your weinre script tag as part of your release builds! -->
+        <!-- Place your remote debugging (weinre) script URL from the Test tab here, if it does not work above -->
+        <!-- <script src="http://debug-software.intel.com/target/target-script-min.js#insertabiglongfunkynumberfromthexdkstesttab"></script> -->
+
+        <div class="uwrap">
+            <div class="upage" id="mainpage">
+                <div class="upage-outer">
+                    <div class="uib-header header-bg container-group inner-element uib_w_1" data-uib="layout/header" data-ver="0">
+                        <h2>Clinicians' Guide</h2>
+                        <div class="widget-container wrapping-col single-centered"></div>
+                        <div class="widget-container content-area horiz-area wrapping-col left"></div>
+                        <div class="widget-container content-area horiz-area wrapping-col right">
+                            <button class="btn widget uib_w_13 d-margins btn-info" data-uib="twitter%20bootstrap/button" data-ver="0"><i class="glyphicon glyphicon-align-justify button-icon-left" data-position="left"></i> 
+                            </button>
+                        </div>
+                    </div>
+                    <div class="upage-content" id="mainsub">
+
+                        <div class="grid grid-pad urow uib_row_12 row-height-12" data-uib="layout/row" data-ver="0">
+                            <div class="col uib_col_24 col-0_12-12" data-uib="layout/col" data-ver="0">
+                                <div class="widget-container content-area vertical-col">
+                                    <span class="uib_shim"></span>
+                                </div>
+                            </div>
+                            <span class="uib_shim"></span>
+                        </div>
+                        <div class="grid grid-pad urow uib_row_3 row-height-3" data-uib="layout/row" data-ver="0">
+                            <div class="col uib_col_3 col-0_12-12" data-uib="layout/col" data-ver="0">
+                                <div class="widget-container content-area vertical-col">
+
+                                    <a class="uib-graphic-button default-graphic-sizing default-image-sizing hover-graphic-button active-graphic-button default-graphic-button default-graphic-text widget uib_w_39 d-margins centerbutton media-button-text-bottom mainbuttontextcolor imagesize graphicsize mainbuttontext"
+                                    data-uib="media/graphic_button" data-ver="0" id="mainbutton">
+                                        <img src="Images/HOC-Official-Logo-2013.png">
+                                        <span class="uib-caption">Clinicians' Guide</span>
+                                    </a>
+                                    <span class="uib_shim"></span>
+                                </div>
+                            </div>
+                            <span class="uib_shim"></span>
+                        </div>
+                    </div>
+                    <!-- /upage-content -->
+
+                    <div class="inner-element uib_w_2 uib_sidebar leftbar bar-bg thumb-bg bar-gutter swipe" data-uib="layout/left_sidebar" data-ver="0" data-anim="{'style':'overlap', 'v':250, 'side':'left'}">
+                        <div class="sidebar-content">
+
+                            <div class="grid grid-pad urow uib_row_1 row-height-1" data-uib="layout/row" data-ver="0">
+                                <div class="col uib_col_1 col-0_12-12" data-uib="layout/col" data-ver="0">
+                                    <div class="widget-container content-area vertical-col">
+
+                                        <div class="list-group widget uib_w_7 d-margins" data-uib="twitter%20bootstrap/list_group" data-ver="0">
+                                            <a class="list-group-item allow-badge widget uib_w_8 d-margins customdiv2" data-uib="twitter%20bootstrap/list_item" data-ver="0">
+
+                                                <h4>Menu</h4>
+                                                <!--h4 class="list-group-item-heading">Menu</h4-->
+                                            </a>
+                                        </div><span class="uib_shim"></span>
+                                    </div>
+                                </div>
+                                <span class="uib_shim"></span>
+                            </div>
+
+                            <div class="grid grid-pad urow uib_row_2 row-height-2 SlideBarListItem" data-uib="layout/row" data-ver="0">
+                                <div class="col uib_col_2 col-0_12-12" data-uib="layout/col" data-ver="0">
+                                    <div class="widget-container content-area vertical-col">
+
+                                        <div class="list-group widget uib_w_3 d-margins" data-uib="twitter%20bootstrap/list_group" data-ver="0">
+                                            <a class="list-group-item allow-badge widget uib_w_4 d-margins customdiv" data-uib="twitter%20bootstrap/list_item" data-ver="0">
+
+                                                <h4>Military Health History</h4>
+                                                <p>How to take one</p>
+                                                <!--h4 class="list-group-item-heading">Military Health History</h4>
+                                                <p class="list-group-item-text">How to take one</p-->
+                                            </a>
+                                            <a class="list-group-item allow-badge widget uib_w_5 customdiv" data-uib="twitter%20bootstrap/list_item" data-ver="0">
+                                                <h4>Health Risks</h4>
+                                                <!--h4 class="list-group-item-heading">Health Risks</h4-->
+
+                                                <p>by Service Era</p>
+                                                <!--p class="list-group-item-text">by Service Era</p-->
+                                            </a>
+                                            <a class="list-group-item allow-badge widget uib_w_40 d-margins customdiv" data-uib="twitter%20bootstrap/list_item" data-ver="0">
+                                                <h4>VA/DoD Clinical Practices</h4>
+                                                <!--h4 class="list-group-item-heading">VA/DoD Clinical Practices</h4-->
+
+                                            </a>
+
+                                            <a class="list-group-item allow-badge widget uib_w_9 d-margins customdiv" data-uib="twitter%20bootstrap/list_item" data-ver="0">
+                                                <h4>DBQ's</h4>
+                                                <p>(Disability Benefits Questionnaires)</p>
+
+                                                <!--h4 class="list-group-item-heading">DBQ's</h4>
+                                                <p class="list-group-item-text">(Disability Benefits Questionnaires)</p-->
+                                            </a>
+                                            <a class="list-group-item allow-badge widget uib_w_10 d-margins customdiv" data-uib="twitter%20bootstrap/list_item" data-ver="0">
+                                                <h4>Lookup Alternatives</h4>
+                                                <p>Index and Alternative Methods</p>
+
+                                                <!--h4 class="list-group-item-heading">Lookup Alternatives</h4>
+                                                <p class="list-group-item-text">Index and Alternative Methods</p-->
+                                            </a>
+                                            <a class="list-group-item allow-badge widget uib_w_11 d-margins customdiv" data-uib="twitter%20bootstrap/list_item" data-ver="0">
+                                                <h4>Afterword</h4>
+                                                <p>Bibliography</p>
+
+                                                <!--h4 class="list-group-item-heading">Afterword</h4>
+                                                <p class="list-group-item-text">Bibliography</p-->
+                                            </a>
+                                            <a class="list-group-item allow-badge widget uib_w_12 d-margins customdiv" data-uib="twitter%20bootstrap/list_item" data-ver="0" href="http://www.lvmachealthcare.org">
+                                                <h4>LVMAC Health Care Portal</h4>
+
+                                                <!--h4 class="list-group-item-heading">LVMAC Health Care Portal</h4-->
+
+                                            </a>
+                                        </div><span class="uib_shim"></span>
+                                    </div>
+                                </div>
+                                <span class="uib_shim"></span>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+                <!-- /upage-outer -->
+            </div>
+            <div class="upage hidden" id="Six6">
+                <div class="upage-outer">
+                    <div class="uib-header header-bg container-group inner-element uib_w_41" data-uib="layout/header" data-ver="0">
+                        <h2>Question Six</h2>
+                        <div class="widget-container wrapping-col single-centered"></div>
+                        <div class="widget-container content-area horiz-area wrapping-col left">
+                            <button class="btn widget uib_w_43 d-margins btn-info" data-uib="twitter%20bootstrap/button" data-ver="0"><i class="glyphicon glyphicon-arrow-left button-icon-left" data-position="left"></i>
+                            </button>
+                        </div>
+                        <div class="widget-container content-area horiz-area wrapping-col right">
+                            <button class="btn widget uib_w_42 d-margins btn-info" data-uib="twitter%20bootstrap/button" data-ver="0"><i class="glyphicon glyphicon-align-justify button-icon-left" data-position="left"></i>
+                            </button>
+                        </div>
+                    </div>
+                    <div id="Six6sub" class="upage-content ">
+
+                        <div class="grid grid-pad urow uib_row_13 row-height-13" data-uib="layout/row" data-ver="0">
+                            <div class="col uib_col_25 col-0_12-12" data-uib="layout/col" data-ver="0">
+                                <div class="widget-container content-area vertical-col">
+
+                                    <div class="widget uib_w_44 d-margins" data-uib="media/text" data-ver="0">
+                                        <div class="widget-container left-receptacle"></div>
+                                        <div class="widget-container right-receptacle"></div>
+                                        <div>
+                                            <p>&nbsp;</p>
+											<div id="Question 6">      
+												<p><strong>Have you received medical care for this condition from any other provider, &nbsp;including military or VA?</strong></p>
+												<p>By asking this question, you may find out that the individual is under VA care, for example. 
+												It would might lead you to ask if he is receiving medications from the VA he has not yet revealed; 
+												that he has already seen a VA doctor who has ordered tests of use to you also, 
+												saving both of you both time and money while also helping to ensure patient safety.</p>
+											</div>
+										<p>&nbsp;</p>
+                                        </div>
+                                    </div>
+
+                                    <span class="uib_shim"></span>
+                                </div>
+                            </div>
+                            <span class="uib_shim"></span>
+                        </div>
+                    </div>
+                </div>
+                <!-- /upage-outer -->
+            </div>
+
+            <div class="upage hidden" id="Six5">
+                <div class="upage-outer">
+                    <div class="uib-header header-bg container-group inner-element uib_w_45" data-uib="layout/header" data-ver="0">
+                        <h2>Question Five</h2>
+                        <div class="widget-container wrapping-col single-centered"></div>
+                        <div class="widget-container content-area horiz-area wrapping-col left">
+                            <button class="btn widget uib_w_48 d-margins btn-info" data-uib="twitter%20bootstrap/button" data-ver="0"><i class="glyphicon glyphicon-arrow-left button-icon-left" data-position="left"></i>
+                            </button>
+                        </div>
+                        <div class="widget-container content-area horiz-area wrapping-col right">
+                            <button class="btn widget uib_w_47 d-margins btn-info" data-uib="twitter%20bootstrap/button" data-ver="0"><i class="glyphicon glyphicon-align-justify button-icon-left" data-position="left"></i>
+                            </button>
+                        </div>
+                    </div>
+                    <div id="Six5sub" class="upage-content ">
+
+                        <div class="grid grid-pad urow uib_row_14 row-height-14" data-uib="layout/row" data-ver="0">
+                            <div class="col uib_col_26 col-0_12-12" data-uib="layout/col" data-ver="0">
+                                <div class="widget-container content-area vertical-col">
+
+                                    <div class="widget uib_w_46 d-margins" data-uib="media/text" data-ver="0">
+                                        <div class="widget-container left-receptacle"></div>
+                                        <div class="widget-container right-receptacle"></div>
+                                        <div>
+                                            <p>&nbsp;</p>
+											<div id="Question 5">      
+												<p><strong>Do you think your service has affected your health?</strong></p>
+												<p>This inquiry gives the veteran an opportunity to raise any concerns he/she has regarding his health.
+												&nbsp;<em>The&nbsp;</em>Military Health Risks by Military Service Era section implies why this is important.
+												&nbsp; You It may uncover other related issues. &nbsp;Since military service can affect many aspects of a person’s 
+												health – physically , mentally and socially, it is important to let them know you are not only interested in their physical health.</p>
+											</div>
+										<p>&nbsp;</p>
+                                        </div>
+                                    </div><span class="uib_shim"></span>
+                                </div>
+                            </div>
+                            <span class="uib_shim"></span>
+                        </div>
+                    </div>
+                </div>
+                <!-- /upage-outer -->
+            </div>
+            <div class="upage hidden" id="Six4">
+                <div class="upage-outer">
+                    <div class="uib-header header-bg container-group inner-element uib_w_49" data-uib="layout/header" data-ver="0">
+                        <h2>Question Four</h2>
+                        <div class="widget-container wrapping-col single-centered"></div>
+                        <div class="widget-container content-area horiz-area wrapping-col left">
+                            <button class="btn widget uib_w_51 d-margins btn-info" data-uib="twitter%20bootstrap/button" data-ver="0"><i class="glyphicon glyphicon-arrow-left"></i>
+                            </button>
+                        </div>
+                        <div class="widget-container content-area horiz-area wrapping-col right">
+                            <button class="btn widget uib_w_50 d-margins btn-info" data-uib="twitter%20bootstrap/button" data-ver="0"><i class="glyphicon glyphicon-align-justify button-icon-left" data-position="left"></i>
+                            </button>
+                        </div>
+                    </div>
+                    <div id="Six4sub" class="upage-content ">
+                        <div class="grid grid-pad urow uib_row_15 row-height-15" data-uib="layout/row" data-ver="0">
+                            <div class="col uib_col_27 col-0_12-12" data-uib="layout/col" data-ver="0">
+                                <div class="widget-container content-area vertical-col">
+
+                                    <div class="widget uib_w_52 d-margins" data-uib="media/text" data-ver="0">
+                                        <div class="widget-container left-receptacle"></div>
+                                        <div class="widget-container right-receptacle"></div>
+                                        <div>
+                                            <p>&nbsp;</p>
+											<div id="Question 4">      
+												<p><strong>What did you do?</strong></p>
+												<p>While the military jargon about jobs and titles may be confusing and intimidating, 
+												siimply asking what a veteran did while he or she was serving could provide important insights.&nbsp; 
+												If he/she does not want to talk about it, the person will tell you that and the question can be left lying.&nbsp; 
+												However, the advantage of asking the question can be enormous and most will appreciate that you are showing both professional diligence and concern.</p>
+												<p>For example, if as implied in the previous question, you find the veteran was never stationed outside of the United States, 
+												you might not think they had a high risk of &nbsp;war related mental trauma.&nbsp; Instead, you might find his state side job was 
+												to receive returning bodies from a war or worked with the extremely seriously injured.&nbsp; Although this veteran may have never have seen battle, 
+												he may be experiencing the effects of secondary trauma.</p>
+											</div>
+										<p>&nbsp;</p>
+                                        </div>
+                                    </div><span class="uib_shim"></span>
+                                </div>
+                            </div>
+                            <span class="uib_shim"></span>
+                        </div>
+                    </div>
+                </div>
+                <!-- /upage-outer -->
+            </div>
+            <div class="upage hidden" id="Six3">
+                <div class="upage-outer">
+                    <div class="uib-header header-bg container-group inner-element uib_w_53" data-uib="layout/header" data-ver="0">
+                        <h2>Question Three</h2>
+                        <div class="widget-container wrapping-col single-centered"></div>
+                        <div class="widget-container content-area horiz-area wrapping-col left">
+                            <button class="btn widget uib_w_55 d-margins btn-info" data-uib="twitter%20bootstrap/button" data-ver="0"><i class="glyphicon glyphicon-arrow-left button-icon-left" data-position="left"></i>
+                            </button>
+                        </div>
+                        <div class="widget-container content-area horiz-area wrapping-col right">
+                            <button class="btn widget uib_w_54 d-margins btn-info" data-uib="twitter%20bootstrap/button" data-ver="0"><i class="glyphicon glyphicon-align-justify button-icon-left" data-position="left"></i>
+                            </button>
+                        </div>
+                    </div>
+                    <div id="Six3sub" class="upage-content ">
+
+                        <div class="grid grid-pad urow uib_row_16 row-height-16" data-uib="layout/row" data-ver="0">
+                            <div class="col uib_col_28 col-0_12-12" data-uib="layout/col" data-ver="0">
+                                <div class="widget-container content-area vertical-col">
+
+                                    <div class="widget uib_w_56 d-margins" data-uib="media/text" data-ver="0">
+                                        <div class="widget-container left-receptacle"></div>
+                                        <div class="widget-container right-receptacle"></div>
+                                        <div>
+                                            <p>&nbsp;</p>
+											<div id="Question 3">      
+												<p><strong>Where did you/he/she serve?</strong></p>
+												<p>Different decades and eras of service have different risk associations.&nbsp; 
+												Knowing the decade or era, however is not enough, knowing where is equally important to determining unique exposures, 
+												especially if it involved being in a combat theater.</p>
+												<p>An example would be the use of Agent Orange as an herbicide in Vietnam and elsewhere in Asia during the Vietnam Conflict era. 
+												&nbsp;&nbsp;And then there are the environmental diseases related to specific geographic areas such as in deserts and the tropics – 
+												uncommon to here and not generally considered.</p>
+											</div>
+										<p>&nbsp;</p>
+                                        </div>
+                                    </div><span class="uib_shim"></span>
+                                </div>
+                            </div>
+                            <span class="uib_shim"></span>
+                        </div>
+                    </div>
+                </div>
+                <!-- /upage-outer -->
+            </div>
+            <div class="upage hidden" id="Six2">
+                <div class="upage-outer">
+                    <div class="uib-header header-bg container-group inner-element uib_w_57" data-uib="layout/header" data-ver="0">
+                        <h2>Question Two</h2>
+                        <div class="widget-container wrapping-col single-centered"></div>
+                        <div class="widget-container content-area horiz-area wrapping-col left">
+                            <button class="btn widget uib_w_60 d-margins btn-info" data-uib="twitter%20bootstrap/button" data-ver="0"><i class="glyphicon glyphicon-arrow-left button-icon-left" data-position="left"></i>
+                            </button>
+                        </div>
+                        <div class="widget-container content-area horiz-area wrapping-col right">
+                            <button class="btn widget uib_w_59 d-margins btn-info" data-uib="twitter%20bootstrap/button" data-ver="0"><i class="glyphicon glyphicon-align-justify button-icon-left" data-position="left"></i>
+                            </button>
+                        </div>
+                    </div>
+                    <div id="Six2sub" class="upage-content ">
+
+                        <div class="grid grid-pad urow uib_row_17 row-height-17" data-uib="layout/row" data-ver="0">
+                            <div class="col uib_col_29 col-0_12-12" data-uib="layout/col" data-ver="0">
+                                <div class="widget-container content-area vertical-col">
+
+                                    <div class="widget uib_w_58 d-margins" data-uib="media/text" data-ver="0">
+                                        <div class="widget-container left-receptacle"></div>
+                                        <div class="widget-container right-receptacle"></div>
+                                        <div>
+                                            <p>&nbsp;</p>
+											<div id="Question 2">      
+												<p><strong>When did you/he/she serve?</strong></p>
+												<p>It is suggested to give them different options to choose – for example, decades or eras of military service.&nbsp; 
+												This will give clinicians a quick idea of what exposures the veteran may have been experienced &nbsp;(See The<em>&nbsp;</em>Military 
+												Health Risks by Military Service Era section).</p>
+												<p>Separating the years into decades or periods is a good tip, for it allows the veteran to give a quick reference if they can’t 
+												remember exact dates.&nbsp; Be prepared for veterans, especially those who made a career of being in the armed forces, having served in more than one era.</p>
+											</div>
+										<p>&nbsp;</p>
+                                        </div>
+                                    </div><span class="uib_shim"></span>
+                                </div>
+                            </div>
+                            <span class="uib_shim"></span>
+                        </div>
+                    </div>
+                </div>
+                <!-- /upage-outer -->
+            </div>
+            <div class="upage hidden" id="Six1">
+                <div class="upage-outer">
+                    <div class="uib-header header-bg container-group inner-element uib_w_61" data-uib="layout/header" data-ver="0">
+                        <h2>Question One</h2>
+                        <div class="widget-container wrapping-col single-centered"></div>
+                        <div class="widget-container content-area horiz-area wrapping-col left">
+                            <button class="btn widget uib_w_64 d-margins btn-info" data-uib="twitter%20bootstrap/button" data-ver="0"><i class="glyphicon glyphicon-arrow-left button-icon-left" data-position="left"></i>
+                            </button>
+                        </div>
+                        <div class="widget-container content-area horiz-area wrapping-col right">
+                            <button class="btn widget uib_w_63 d-margins btn-info" data-uib="twitter%20bootstrap/button" data-ver="0"><i class="glyphicon glyphicon-align-justify button-icon-left" data-position="left"></i>
+                            </button>
+                        </div>
+                    </div>
+                    <div id="Six1sub" class="upage-content ">
+
+                        <div class="grid grid-pad urow uib_row_18 row-height-18" data-uib="layout/row" data-ver="0">
+                            <div class="col uib_col_30 col-0_12-12" data-uib="layout/col" data-ver="0">
+                                <div class="widget-container content-area vertical-col">
+
+                                    <div class="widget uib_w_62 d-margins" data-uib="media/text" data-ver="0">
+                                        <div class="widget-container left-receptacle"></div>
+                                        <div class="widget-container right-receptacle"></div>
+                                        <div>
+                                           <p>&nbsp;</p>
+											<div id="Question 1">      
+												<p><strong>Have you or someone close to you ever served in the military or armed forces on active duty?&nbsp; Who?</strong></p>
+												<p>Note that the question does not ask if the person is a veteran.&nbsp; Some veterans will not identify themselves as veterans, 
+												even though they are. &nbsp;This may be due to still having an active military status and only seeing veteran status as denoting 
+												being separated from the military.&nbsp; It may also come from never having served in a “war zone” and feeling one does not deserve 
+												to be called a veteran.&nbsp; Data suggests that many women who have served in the armed forces fail to think of themselves as veterans.</p>
+												<p>Whatever the case may be, some veterans will answer no when asked if they are a veteran, but they will more likely answer yes when 
+												asked if they have served in the <em>military&nbsp;</em>or <em>armed forces </em>on active duty. &nbsp;The term, “armed forces”, is the 
+												better of the two terms to use because includes the military services, defined&nbsp; as the Army, Marines, Navy, and the Air Force – and 
+												also the Coast Guard.&nbsp; Coast Guardsmen often called up to perform as a military service during periods of armed conflict or war and, 
+												in so doing, qualify as veterans. That raises another key point – active duty service is entailed in the definition of a being a veteran.</p>
+												<p>It is suggested the patient be asked not only if he/she has served, but also if anyone close to him/her has served. Health issues may 
+												arise in loved ones of deployed personnel and veterans – generally those revolving around mental health and reproduction. If the family deployed 
+												with the spouse, they may be subject to some of the same environmental contaminators (e.g. the Camp Lejeune water contamination situation).</p>
+											</div>
+										<p>&nbsp;</p>
+                                        </div>
+                                    </div><span class="uib_shim"></span>
+                                </div>
+                            </div>
+                            <span class="uib_shim"></span>
+                        </div>
+                    </div>
+                </div>
+                <!-- /upage-outer -->
+            </div>
+            <div class="upage hidden" id="SixIntro">
+                <div class="upage-outer">
+                    <div class="uib-header header-bg container-group inner-element uib_w_65" data-uib="layout/header" data-ver="0">
+                        <h2>Introduction</h2>
+                        <div class="widget-container wrapping-col single-centered"></div>
+                        <div class="widget-container content-area horiz-area wrapping-col left">
+                            <button class="btn widget uib_w_68 d-margins btn-info" data-uib="twitter%20bootstrap/button" data-ver="0"><i class="glyphicon glyphicon-arrow-left button-icon-left" data-position="left"></i>
+                            </button>
+                        </div>
+                        <div class="widget-container content-area horiz-area wrapping-col right">
+                            <button class="btn widget uib_w_67 d-margins btn-info" data-uib="twitter%20bootstrap/button" data-ver="0"><i class="glyphicon glyphicon-align-justify button-icon-left" data-position="left"></i>
+                            </button>
+                        </div>
+                    </div>
+                    <div id="SixIntrosub" class="upage-content ">
+
+                        <div class="grid grid-pad urow uib_row_19 row-height-19" data-uib="layout/row" data-ver="0">
+                            <div class="col uib_col_31 col-0_12-12" data-uib="layout/col" data-ver="0">
+                                <div class="widget-container content-area vertical-col">
+
+                                    <div class="widget uib_w_66 d-margins" data-uib="media/text" data-ver="0">
+                                        <div class="widget-container left-receptacle"></div>
+                                        <div class="widget-container right-receptacle"></div>
+                                        <div>
+                                            <p>&nbsp;</p>
+											<div id="Six Questions Notes">      
+												<?php 
+													query_posts('page_id=7');
+													the_post();
+													the_content();
+													/*
+													if (have_posts()) :
+													while (have_posts()) :
+													endwhile;
+													endif;
+													*/
+													wp_reset_query();
+												?>     
+											</div> <!-- word press content div end -->
+										<p>&nbsp;</p>
+                                        </div>
+                                    </div><span class="uib_shim"></span>
+                                </div>
+                            </div>
+                            <span class="uib_shim"></span>
+                        </div>
+                    </div>
+                </div>
+                <!-- /upage-outer -->
+            </div>
+            <div class="upage hidden" id="EraNotes">
+                <div class="upage-outer">
+                    <div class="uib-header header-bg container-group inner-element uib_w_69" data-uib="layout/header" data-ver="0">
+                        <h2>Notes</h2>
+                        <div class="widget-container wrapping-col single-centered"></div>
+                        <div class="widget-container content-area horiz-area wrapping-col left">
+                            <button class="btn widget uib_w_85 d-margins btn-info" data-uib="twitter%20bootstrap/button" data-ver="0"><i class="glyphicon glyphicon-arrow-left button-icon-left" data-position="left"></i>
+                            </button>
+                        </div>
+                        <div class="widget-container content-area horiz-area wrapping-col right">
+                            <button class="btn widget uib_w_86 d-margins btn-info" data-uib="twitter%20bootstrap/button" data-ver="0"><i class="glyphicon glyphicon-align-justify button-icon-left" data-position="left"></i>
+                            </button>
+                        </div>
+                    </div>
+                    <div id="EraNotessub" class="upage-content ">
+
+                        <div class="grid grid-pad urow uib_row_35 row-height-35" data-uib="layout/row" data-ver="0">
+                            <div class="col uib_col_47 col-0_12-12" data-uib="layout/col" data-ver="0">
+                                <div class="widget-container content-area vertical-col">
+
+                                    <div class="widget uib_w_133 d-margins" data-uib="media/text" data-ver="0">
+                                        <div class="widget-container left-receptacle"></div>
+                                        <div class="widget-container right-receptacle"></div>
+                                        <div>
+                                            <p>&nbsp;</p>
+											<div id="Military Health Risks by Military Service Era">      
+												<?php 
+													query_posts('page_id=59');
+													the_post();
+													the_content();
+													/*
+													if (have_posts()) :
+													while (have_posts()) :
+													endwhile;
+													endif;
+													*/
+													wp_reset_query();
+												?>     
+											</div> <!-- word press content div end -->
+										<p>&nbsp;</p>
+                                        </div>
+                                    </div><span class="uib_shim"></span>
+                                </div>
+                            </div>
+                            <span class="uib_shim"></span>
+                        </div>
+                    </div>
+                </div>
+                <!-- /upage-outer -->
+            </div>
+            <div class="upage hidden" id="OtherX">
+                <div class="upage-outer">
+                    <div class="uib-header header-bg container-group inner-element uib_w_70" data-uib="layout/header" data-ver="0">
+                        <h2>Other Exposures</h2>
+                        <div class="widget-container wrapping-col single-centered"></div>
+                        <div class="widget-container content-area horiz-area wrapping-col left">
+                            <button class="btn widget uib_w_87 d-margins btn-info" data-uib="twitter%20bootstrap/button" data-ver="0"><i class="glyphicon glyphicon-arrow-left button-icon-left" data-position="left"></i>
+                            </button>
+                        </div>
+                        <div class="widget-container content-area horiz-area wrapping-col right">
+                            <button class="btn widget uib_w_88 d-margins btn-info" data-uib="twitter%20bootstrap/button" data-ver="0"><i class="glyphicon glyphicon-align-justify button-icon-left" data-position="left"></i>
+                            </button>
+                        </div>
+                    </div>
+                    <div id="OtherXsub" class="upage-content ">
+
+                        <div class="grid grid-pad urow uib_row_34 row-height-34" data-uib="layout/row" data-ver="0">
+                            <div class="col uib_col_46 col-0_12-12" data-uib="layout/col" data-ver="0">
+                                <div class="widget-container content-area vertical-col">
+
+                                    <div class="widget uib_w_132 d-margins" data-uib="media/text" data-ver="0">
+                                        <div class="widget-container left-receptacle"></div>
+                                        <div class="widget-container right-receptacle"></div>
+                                        <div>
+                                            <p>&nbsp;</p>
+										<div id="Other Potential Environmental Exposures">      
+										<?php 
+										query_posts('page_id=24');
+										the_post();
+										the_content();
+										/*
+										if (have_posts()) :
+										  while (have_posts()) :
+										  endwhile;
+										endif;
+										*/
+										wp_reset_query();
+										?>     
+										</div> <!-- word press content div end -->
+										<p>&nbsp;</p>
+                                        </div>
+                                    </div><span class="uib_shim"></span>
+                                </div>
+                            </div>
+                            <span class="uib_shim"></span>
+                        </div>
+                    </div>
+                </div>
+                <!-- /upage-outer -->
+            </div>
+            <div class="upage hidden" id="WW2">
+                <div class="upage-outer">
+                    <div class="uib-header header-bg container-group inner-element uib_w_71" data-uib="layout/header" data-ver="0">
+                        <h2>World War II</h2>
+                        <div class="widget-container wrapping-col single-centered"></div>
+                        <div class="widget-container content-area horiz-area wrapping-col left">
+                            <button class="btn widget uib_w_89 d-margins btn-info" data-uib="twitter%20bootstrap/button" data-ver="0"><i class="glyphicon glyphicon-arrow-left button-icon-left" data-position="left"></i>
+                            </button>
+                        </div>
+                        <div class="widget-container content-area horiz-area wrapping-col right">
+                            <button class="btn widget uib_w_90 d-margins btn-info" data-uib="twitter%20bootstrap/button" data-ver="0"><i class="glyphicon glyphicon-align-justify button-icon-left" data-position="left"></i>
+                            </button>
+                        </div>
+                    </div>
+                    <div id="WW2sub" class="upage-content ">
+
+                        <div class="grid grid-pad urow uib_row_33 row-height-33" data-uib="layout/row" data-ver="0">
+                            <div class="col uib_col_45 col-0_12-12" data-uib="layout/col" data-ver="0">
+                                <div class="widget-container content-area vertical-col">
+
+                                    <div class="widget uib_w_131 d-margins" data-uib="media/text" data-ver="0">
+                                        <div class="widget-container left-receptacle"></div>
+                                        <div class="widget-container right-receptacle"></div>
+                                        <div>
+                                            <p>&nbsp;</p>
+												<div id="World War II(1941-1946)">      
+												<?php 
+												query_posts('page_id=22');
+												the_post();
+												the_content();
+												/*
+												if (have_posts()) :
+												  while (have_posts()) :
+												  endwhile;
+												endif;
+												*/
+												wp_reset_query();
+												?>     
+												</div> <!-- word press content div end -->
+												<p>&nbsp;</p>
+                                        </div>
+                                    </div><span class="uib_shim"></span>
+                                </div>
+                            </div>
+                            <span class="uib_shim"></span>
+                        </div>
+                    </div>
+                </div>
+                <!-- /upage-outer -->
+            </div>
+            <div class="upage hidden" id="Korea">
+                <div class="upage-outer">
+                    <div class="uib-header header-bg container-group inner-element uib_w_72" data-uib="layout/header" data-ver="0">
+                        <h2>Korea</h2>
+                        <div class="widget-container wrapping-col single-centered"></div>
+                        <div class="widget-container content-area horiz-area wrapping-col left">
+                            <button class="btn widget uib_w_91 d-margins btn-info" data-uib="twitter%20bootstrap/button" data-ver="0"><i class="glyphicon glyphicon-arrow-left button-icon-left" data-position="left"></i>
+                            </button>
+                        </div>
+                        <div class="widget-container content-area horiz-area wrapping-col right">
+                            <button class="btn widget uib_w_92 d-margins btn-info" data-uib="twitter%20bootstrap/button" data-ver="0"><i class="glyphicon glyphicon-align-justify button-icon-left" data-position="left"></i>
+                            </button>
+                        </div>
+                    </div>
+                    <div id="Koreasub" class="upage-content ">
+
+                        <div class="grid grid-pad urow uib_row_32 row-height-32" data-uib="layout/row" data-ver="0">
+                            <div class="col uib_col_44 col-0_12-12" data-uib="layout/col" data-ver="0">
+                                <div class="widget-container content-area vertical-col">
+
+                                    <div class="widget uib_w_130 d-margins" data-uib="media/text" data-ver="0">
+                                        <div class="widget-container left-receptacle"></div>
+                                        <div class="widget-container right-receptacle"></div>
+                                        <div>
+                                            <p>&nbsp;</p>
+											<div id="Korean Conflict (1950-1955)">      
+												<?php 
+													query_posts('page_id=20');
+													the_post();
+													the_content();
+													/*
+													if (have_posts()) :
+													while (have_posts()) :
+													endwhile;
+													endif;
+													*/
+													wp_reset_query();
+												?>     
+											</div> <!-- word press content div end -->
+										<p>&nbsp;</p>
+                                        </div>
+                                    </div><span class="uib_shim"></span>
+                                </div>
+                            </div>
+                            <span class="uib_shim"></span>
+                        </div>
+                    </div>
+                </div>
+                <!-- /upage-outer -->
+            </div>
+            <div class="upage hidden" id="Nam">
+                <div class="upage-outer">
+                    <div class="uib-header header-bg container-group inner-element uib_w_73" data-uib="layout/header" data-ver="0">
+                        <h2>Vietnam</h2>
+                        <div class="widget-container wrapping-col single-centered"></div>
+                        <div class="widget-container content-area horiz-area wrapping-col left">
+                            <button class="btn widget uib_w_93 d-margins btn-info" data-uib="twitter%20bootstrap/button" data-ver="0"><i class="glyphicon glyphicon-arrow-left button-icon-left" data-position="left"></i> 
+                            </button>
+                        </div>
+                        <div class="widget-container content-area horiz-area wrapping-col right">
+                            <button class="btn widget uib_w_94 d-margins btn-info" data-uib="twitter%20bootstrap/button" data-ver="0"><i class="glyphicon glyphicon-align-justify button-icon-left" data-position="left"></i> 
+                            </button>
+                        </div>
+                    </div>
+                    <div id="Namsub" class="upage-content ">
+
+                        <div class="grid grid-pad urow uib_row_31 row-height-31" data-uib="layout/row" data-ver="0">
+                            <div class="col uib_col_43 col-0_12-12" data-uib="layout/col" data-ver="0">
+                                <div class="widget-container content-area vertical-col">
+
+                                    <div class="widget uib_w_129 d-margins" data-uib="media/text" data-ver="0">
+                                        <div class="widget-container left-receptacle"></div>
+                                        <div class="widget-container right-receptacle"></div>
+                                        <div>
+                                            <p>&nbsp;</p>
+											<div id="Vietnam Conflict (1961-1975)">      
+												<?php 
+													query_posts('page_id=18');
+													the_post();
+													the_content();
+													/*
+													if (have_posts()) :
+													while (have_posts()) :
+													endwhile;
+													endif;
+													*/
+													wp_reset_query();
+												?>     
+											</div> <!-- word press content div end -->
+										<p>&nbsp;</p>
+                                        </div>
+                                    </div><span class="uib_shim"></span>
+                                </div>
+                            </div>
+                            <span class="uib_shim"></span>
+                        </div>
+                    </div>
+                </div>
+                <!-- /upage-outer -->
+            </div>
+            <div class="upage hidden" id="USMC">
+                <div class="upage-outer">
+                    <div class="uib-header header-bg container-group inner-element uib_w_74" data-uib="layout/header" data-ver="0">
+                        <h2>Camp Lejeune</h2>
+                        <div class="widget-container wrapping-col single-centered"></div>
+                        <div class="widget-container content-area horiz-area wrapping-col left">
+                            <button class="btn widget uib_w_95 d-margins btn-info" data-uib="twitter%20bootstrap/button" data-ver="0"><i class="glyphicon glyphicon-arrow-left button-icon-left" data-position="left"></i> 
+                            </button>
+                        </div>
+                        <div class="widget-container content-area horiz-area wrapping-col right">
+                            <button class="btn widget uib_w_96 d-margins btn-info" data-uib="twitter%20bootstrap/button" data-ver="0"><i class="glyphicon glyphicon-align-justify button-icon-left" data-position="left"></i> 
+                            </button>
+                        </div>
+                    </div>
+                    <div id="USMCsub" class="upage-content ">
+
+                        <div class="grid grid-pad urow uib_row_30 row-height-30" data-uib="layout/row" data-ver="0">
+                            <div class="col uib_col_42 col-0_12-12" data-uib="layout/col" data-ver="0">
+                                <div class="widget-container content-area vertical-col">
+
+                                    <div class="widget uib_w_128 d-margins" data-uib="media/text" data-ver="0">
+                                        <div class="widget-container left-receptacle"></div>
+                                        <div class="widget-container right-receptacle"></div>
+                                        <div>
+                                            <p>&nbsp;</p>
+											<div id="Camp Lejeune Water Contamination (1957-1987)">      
+												<?php 
+													query_posts('page_id=16');
+													the_post();
+													the_content();
+													/*
+													if (have_posts()) :
+													while (have_posts()) :
+													endwhile;
+													endif;
+													*/
+													wp_reset_query();
+												?>     
+											</div> <!-- word press content div end -->
+										<p>&nbsp;</p>
+                                        </div>
+                                    </div><span class="uib_shim"></span>
+                                </div>
+                            </div>
+                            <span class="uib_shim"></span>
+                        </div>
+                    </div>
+                </div>
+                <!-- /upage-outer -->
+            </div>
+            <div class="upage hidden" id="ColdWar">
+                <div class="upage-outer">
+                    <div class="uib-header header-bg container-group inner-element uib_w_75" data-uib="layout/header" data-ver="0">
+                        <h2>Cold War</h2>
+                        <div class="widget-container wrapping-col single-centered"></div>
+                        <div class="widget-container content-area horiz-area wrapping-col left">
+                            <button class="btn widget uib_w_97 d-margins btn-info" data-uib="twitter%20bootstrap/button" data-ver="0"><i class="glyphicon glyphicon-arrow-left button-icon-left" data-position="left"></i>
+                            </button>
+                        </div>
+                        <div class="widget-container content-area horiz-area wrapping-col right">
+                            <button class="btn widget uib_w_98 d-margins btn-info" data-uib="twitter%20bootstrap/button" data-ver="0"><i class="glyphicon glyphicon-align-justify button-icon-left" data-position="left"></i>
+                            </button>
+                        </div>
+                    </div>
+                    <div id="ColdWarsub" class="upage-content ">
+
+                        <div class="grid grid-pad urow uib_row_29 row-height-29" data-uib="layout/row" data-ver="0">
+                            <div class="col uib_col_41 col-0_12-12" data-uib="layout/col" data-ver="0">
+                                <div class="widget-container content-area vertical-col">
+
+                                    <div class="widget uib_w_127 d-margins" data-uib="media/text" data-ver="0">
+                                        <div class="widget-container left-receptacle"></div>
+                                        <div class="widget-container right-receptacle"></div>
+                                        <div>
+                                            <p>&nbsp;</p>
+											<div id="Cold War (1945-1990)">      
+												<?php 
+													query_posts('page_id=14');
+													the_post();
+													the_content();
+													/*
+													if (have_posts()) :
+													while (have_posts()) :
+													endwhile;
+													endif;
+													*/
+													wp_reset_query();
+												?>     
+											</div> <!-- word press content div end -->
+										<p>&nbsp;</p>
+                                        </div>
+                                    </div><span class="uib_shim"></span>
+                                </div>
+                            </div>
+                            <span class="uib_shim"></span>
+                        </div>
+                    </div>
+                </div>
+                <!-- /upage-outer -->
+            </div>
+            <div class="upage hidden" id="GulfWar">
+                <div class="upage-outer">
+                    <div class="uib-header header-bg container-group inner-element uib_w_76" data-uib="layout/header" data-ver="0">
+                        <h2>Gulf War</h2>
+                        <div class="widget-container wrapping-col single-centered"></div>
+                        <div class="widget-container content-area horiz-area wrapping-col left">
+                            <button class="btn widget uib_w_99 d-margins btn-info" data-uib="twitter%20bootstrap/button" data-ver="0"><i class="glyphicon glyphicon-arrow-left button-icon-left" data-position="left"></i>
+                            </button>
+                        </div>
+                        <div class="widget-container content-area horiz-area wrapping-col right">
+                            <button class="btn widget uib_w_100 d-margins btn-info" data-uib="twitter%20bootstrap/button" data-ver="0"><i class="glyphicon glyphicon-align-justify button-icon-left" data-position="left"></i>
+                            </button>
+                        </div>
+                    </div>
+                    <div id="GulfWarsub" class="upage-content ">
+
+                        <div class="grid grid-pad urow uib_row_28 row-height-28" data-uib="layout/row" data-ver="0">
+                            <div class="col uib_col_40 col-0_12-12" data-uib="layout/col" data-ver="0">
+                                <div class="widget-container content-area vertical-col">
+
+                                    <div class="widget uib_w_126 d-margins" data-uib="media/text" data-ver="0">
+                                        <div class="widget-container left-receptacle"></div>
+                                        <div class="widget-container right-receptacle"></div>
+                                        <div>
+                                            <p>&nbsp;</p>
+											<div id="Persian Gulf Conflict/Gulf War/Desert Shield/Storm (1990-1991)">      
+												<?php 
+													query_posts('page_id=12');
+													the_post();
+													the_content();
+													/*
+													if (have_posts()) :
+													while (have_posts()) :
+													endwhile;
+													endif;
+													*/
+													wp_reset_query();
+												?>     
+											</div> <!-- word press content div end -->
+										<p>&nbsp;</p>
+                                        </div>
+                                    </div><span class="uib_shim"></span>
+                                </div>
+                            </div>
+                            <span class="uib_shim"></span>
+                        </div>
+                    </div>
+                </div>
+                <!-- /upage-outer -->
+            </div>
+            <div class="upage hidden" id="Bosnia">
+                <div class="upage-outer">
+                    <div class="uib-header header-bg container-group inner-element uib_w_77" data-uib="layout/header" data-ver="0">
+                        <h2>Bosnia</h2>
+                        <div class="widget-container wrapping-col single-centered"></div>
+                        <div class="widget-container content-area horiz-area wrapping-col left">
+                            <button class="btn widget uib_w_101 d-margins btn-info" data-uib="twitter%20bootstrap/button" data-ver="0"><i class="glyphicon glyphicon-arrow-left button-icon-left" data-position="left"></i>
+                            </button>
+                        </div>
+                        <div class="widget-container content-area horiz-area wrapping-col right">
+                            <button class="btn widget uib_w_102 d-margins btn-info" data-uib="twitter%20bootstrap/button" data-ver="0"><i class="glyphicon glyphicon-align-justify button-icon-left" data-position="left"></i>
+                            </button>
+                        </div>
+                    </div>
+                    <div id="Bosniasub" class="upage-content ">
+
+                        <div class="grid grid-pad urow uib_row_27 row-height-27" data-uib="layout/row" data-ver="0">
+                            <div class="col uib_col_39 col-0_12-12" data-uib="layout/col" data-ver="0">
+                                <div class="widget-container content-area vertical-col">
+
+                                    <div class="widget uib_w_125 d-margins" data-uib="media/text" data-ver="0">
+                                        <div class="widget-container left-receptacle"></div>
+                                        <div class="widget-container right-receptacle"></div>
+                                        <div>
+                                            <p>&nbsp;</p>
+											<div id="Bosnia and Herzegovina Humanitarian Operation (1992-1996)">      
+												<?php 
+													query_posts('page_id=10');
+													the_post();
+													the_content();
+													/*
+													if (have_posts()) :
+													while (have_posts()) :
+													endwhile;
+													endif;
+													*/
+													wp_reset_query();
+												?>     
+											</div> <!-- word press content div end -->
+										<p>&nbsp;</p>
+                                        </div>
+                                    </div><span class="uib_shim"></span>
+                                </div>
+                            </div>
+                            <span class="uib_shim"></span>
+                        </div>
+                    </div>
+                </div>
+                <!-- /upage-outer -->
+            </div>
+            <div class="upage hidden" id="OIF-OEF">
+                <div class="upage-outer">
+                    <div class="uib-header header-bg container-group inner-element uib_w_78" data-uib="layout/header" data-ver="0">
+                        <h2>OEF OIF OND</h2>
+                        <div class="widget-container wrapping-col single-centered"></div>
+                        <div class="widget-container content-area horiz-area wrapping-col left">
+                            <button class="btn widget uib_w_103 d-margins btn-info" data-uib="twitter%20bootstrap/button" data-ver="0"><i class="glyphicon glyphicon-arrow-left button-icon-left" data-position="left"></i>
+                            </button>
+                        </div>
+                        <div class="widget-container content-area horiz-area wrapping-col right">
+                            <button class="btn widget uib_w_104 d-margins btn-info" data-uib="twitter%20bootstrap/button" data-ver="0"><i class="glyphicon glyphicon-align-justify button-icon-left" data-position="left"></i>
+                            </button>
+                        </div>
+                    </div>
+                    <div id="OIF-OEFsub" class="upage-content ">
+
+                        <div class="grid grid-pad urow uib_row_26 row-height-26" data-uib="layout/row" data-ver="0">
+                            <div class="col uib_col_38 col-0_12-12" data-uib="layout/col" data-ver="0">
+                                <div class="widget-container content-area vertical-col">
+
+                                    <div class="widget uib_w_124 d-margins" data-uib="media/text" data-ver="0">
+                                        <div class="widget-container left-receptacle"></div>
+                                        <div class="widget-container right-receptacle"></div>
+                                        <div>
+                                            <p>&nbsp;</p>
+											<div id="OIF/EF/OND Conflicts/Global War on Terrorism (2001 – Present)">      
+												<?php 
+													query_posts('page_id=4');
+													the_post();
+													the_content();
+													/*
+													if (have_posts()) :
+													while (have_posts()) :
+													endwhile;
+													endif;
+													*/
+													wp_reset_query();
+												?>     
+											</div> <!-- word press content div end -->
+										<p>&nbsp;</p>
+                                        </div>
+                                    </div><span class="uib_shim"></span>
+                                </div>
+                            </div>
+                            <span class="uib_shim"></span>
+                        </div>
+                    </div>
+                </div>
+                <!-- /upage-outer -->
+            </div>
+            <div class="upage hidden" id="Afterword">
+                <div class="upage-outer">
+                    <div class="uib-header header-bg container-group inner-element uib_w_79" data-uib="layout/header" data-ver="0">
+                        <h2>LVMAC</h2>
+                        <div class="widget-container wrapping-col single-centered"></div>
+                        <div class="widget-container content-area horiz-area wrapping-col left">
+                            <button class="btn widget uib_w_105 d-margins btn-info" data-uib="twitter%20bootstrap/button" data-ver="0"><i class="glyphicon glyphicon-arrow-left button-icon-left" data-position="left"></i>
+                            </button>
+                        </div>
+                        <div class="widget-container content-area horiz-area wrapping-col right">
+                            <button class="btn widget uib_w_106 d-margins btn-info" data-uib="twitter%20bootstrap/button" data-ver="0"><i class="glyphicon glyphicon-align-justify button-icon-left" data-position="left"></i>
+                            </button>
+                        </div>
+                    </div>
+                    <div id="Afterwordsub" class="upage-content ">
+
+                        <div class="grid grid-pad urow uib_row_25 row-height-25" data-uib="layout/row" data-ver="0">
+                            <div class="col uib_col_37 col-0_12-12" data-uib="layout/col" data-ver="0">
+                                <div class="widget-container content-area vertical-col">
+
+                                    <div class="widget uib_w_122 d-margins" data-uib="media/text" data-ver="0">
+                                        <div class="widget-container left-receptacle"></div>
+                                        <div class="widget-container right-receptacle"></div>
+                                        <div>
+                                            <p>&nbsp;</p>
+											<div id="About">      
+												<?php 
+													query_posts('page_id=105');
+													the_post();
+													the_content();
+													/*
+													if (have_posts()) :
+													while (have_posts()) :
+													endwhile;
+													endif;
+													*/
+													wp_reset_query();
+												?>     
+											</div> <!-- word press content div end -->
+										<p>&nbsp;</p>
+                                        </div>
+                                    </div><span class="uib_shim"></span>
+                                </div>
+                            </div>
+                            <span class="uib_shim"></span>
+                        </div>
+
+                        <div class="grid grid-pad urow uib_row_37 row-height-37" data-uib="layout/row" data-ver="0">
+
+                            <div class="col uib_col_48 col-0" data-uib="layout/col" data-ver="0">
+                                <div class="widget-container content-area vertical-col">
+
+                                    <div class="widget uib_w_123 d-margins" data-uib="media/text" data-ver="0">
+                                        <div class="widget-container left-receptacle"></div>
+                                        <div class="widget-container right-receptacle"></div>
+                                        <div>
+                                            <p>&nbsp;</p>
+											<div id="Bibliography">      
+												<?php 
+													query_posts('page_id=53');
+													the_post();
+													the_content();
+													/*
+													if (have_posts()) :
+													while (have_posts()) :
+													endwhile;
+													endif;
+													*/
+													wp_reset_query();
+												?>     
+											</div> <!-- word press content div end -->
+										<p>&nbsp;</p>
+                                        </div>
+                                    </div><span class="uib_shim"></span>
+                                </div>
+                            </div><span class="uib_shim"></span>
+                        </div>
+                    </div>
+                </div>
+                <!-- /upage-outer -->
+            </div>
+            <div class="upage hidden" id="Alt">
+                <div class="upage-outer">
+                    <div class="uib-header header-bg container-group inner-element uib_w_80" data-uib="layout/header" data-ver="0">
+                        <h2>Alternative Lookup</h2>
+                        <div class="widget-container wrapping-col single-centered"></div>
+                        <div class="widget-container content-area horiz-area wrapping-col left">
+                            <button class="btn widget uib_w_107 d-margins btn-info" data-uib="twitter%20bootstrap/button" data-ver="0"><i class="glyphicon glyphicon-arrow-left"></i>
+                            </button>
+                        </div>
+                        <div class="widget-container content-area horiz-area wrapping-col right">
+                            <button class="btn widget uib_w_108 d-margins btn-info" data-uib="twitter%20bootstrap/button" data-ver="0"><i class="glyphicon glyphicon-align-justify button-icon-left" data-position="left"></i>
+                            </button>
+                        </div>
+                    </div>
+                    <div id="Altsub" class="upage-content ">
+
+                        <div class="grid grid-pad urow uib_row_24 row-height-24" data-uib="layout/row" data-ver="0">
+                            <div class="col uib_col_36 col-0_12-12" data-uib="layout/col" data-ver="0">
+                                <div class="widget-container content-area vertical-col">
+
+                                    <div class="widget uib_w_121 d-margins" data-uib="media/text" data-ver="0">
+                                        <div class="widget-container left-receptacle"></div>
+                                        <div class="widget-container right-receptacle"></div>
+                                        <div>
+                                            <p>&nbsp;</p>
+											<div id="ALT Links">      
+												<?php 
+													query_posts('page_id=44');
+													the_post();
+													the_content();
+													/*
+													if (have_posts()) :
+													while (have_posts()) :
+													endwhile;
+													endif;
+													*/
+													wp_reset_query();
+												?>     
+											</div> <!-- word press content div end -->
+										<p>&nbsp;</p>
+                                        </div>
+                                    </div><span class="uib_shim"></span>
+                                </div>
+                            </div>
+                            <span class="uib_shim"></span>
+                        </div>
+                    </div>
+                </div>
+                <!-- /upage-outer -->
+            </div>
+            <div class="upage hidden" id="Lookup">
+                <div class="upage-outer">
+                    <div class="uib-header header-bg container-group inner-element uib_w_81" data-uib="layout/header" data-ver="0">
+                        <h2>Lookup Methods</h2>
+                        <div class="widget-container wrapping-col single-centered"></div>
+                        <div class="widget-container content-area horiz-area wrapping-col left">
+                            <button class="btn widget uib_w_109 d-margins btn-info" data-uib="twitter%20bootstrap/button" data-ver="0"><i class="glyphicon glyphicon-arrow-left button-icon-left" data-position="left"></i>
+                            </button>
+                        </div>
+                        <div class="widget-container content-area horiz-area wrapping-col right">
+                            <button class="btn widget uib_w_110 d-margins btn-info" data-uib="twitter%20bootstrap/button" data-ver="0"><i class="glyphicon glyphicon-align-justify button-icon-left" data-position="left"></i>
+                            </button>
+                        </div>
+                    </div>
+                    <div id="Lookupsub" class="upage-content ">
+
+                        <div class="grid grid-pad urow uib_row_23 row-height-23" data-uib="layout/row" data-ver="0">
+                            <div class="col uib_col_35 col-0_12-12" data-uib="layout/col" data-ver="0">
+                                <div class="widget-container content-area vertical-col">
+
+                                    <div class="well no_wrap  widget uib_w_134 d-margins wellcolor" data-uib="twitter%20bootstrap/well" data-ver="0">
+                                        <div class="col uib_col_49 single-col" data-uib="layout/col" data-ver="0">
+                                            <div class="widget-container content-area vertical-col">
+
+                                                <div class="list-group widget uib_w_135 d-margins" data-uib="twitter%20bootstrap/list_group" data-ver="0">
+                                                    <a class="list-group-item allow-badge widget uib_w_136 customdiv" data-uib="twitter%20bootstrap/list_item" data-ver="0">
+                                                        <h4>Index</h4>
+                                                        <!--p>List item</p-->
+                                                    </a>
+                                                    <a class="list-group-item allow-badge widget uib_w_137 customdiv" data-uib="twitter%20bootstrap/list_item" data-ver="0">
+                                                        <h4>Alternative Methods</h4>
+                                                        <!--p>List item</p-->
+                                                    </a>
+                                                </div><span class="uib_shim"></span>
+                                            </div>
+                                        </div>
+                                    </div><span class="uib_shim"></span>
+                                </div>
+                            </div>
+                            <span class="uib_shim"></span>
+                        </div>
+                    </div>
+                </div>
+                <!-- /upage-outer -->
+            </div>
+            <div class="upage hidden" id="Index">
+                <div class="upage-outer">
+                    <div class="uib-header header-bg container-group inner-element uib_w_82" data-uib="layout/header" data-ver="0">
+                        <h2>Index</h2>
+                        <div class="widget-container wrapping-col single-centered"></div>
+                        <div class="widget-container content-area horiz-area wrapping-col left">
+                            <button class="btn widget uib_w_111 d-margins btn-info" data-uib="twitter%20bootstrap/button" data-ver="0"><i class="glyphicon glyphicon-arrow-left button-icon-left" data-position="left"></i>
+                            </button>
+                        </div>
+                        <div class="widget-container content-area horiz-area wrapping-col right">
+                            <button class="btn widget uib_w_112 d-margins btn-info" data-uib="twitter%20bootstrap/button" data-ver="0"><i class="glyphicon glyphicon-align-justify button-icon-left" data-position="left"></i>
+                            </button>
+                        </div>
+                    </div>
+                    <div id="Indexsub" class="upage-content ">
+
+                        <div class="grid grid-pad urow uib_row_22 row-height-22" data-uib="layout/row" data-ver="0">
+                            <div class="col uib_col_34 col-0_12-12" data-uib="layout/col" data-ver="0">
+                                <div class="widget-container content-area vertical-col">
+
+                                    <div class="widget uib_w_119 d-margins" data-uib="media/text" data-ver="0">
+                                        <div class="widget-container left-receptacle"></div>
+                                        <div class="widget-container right-receptacle"></div>
+                                        <div>
+                                            <p>&nbsp;</p>
+											<div id="Index">      
+												<?php 
+													query_posts('page_id=55');
+													the_post();
+													the_content();
+													/*
+													if (have_posts()) :
+													while (have_posts()) :
+													endwhile;
+													endif;
+													*/
+													wp_reset_query();
+												?>     
+											</div> <!-- word press content div end -->
+										<p>&nbsp;</p>
+                                        </div>
+                                    </div><span class="uib_shim"></span>
+                                </div>
+                            </div>
+                            <span class="uib_shim"></span>
+                        </div>
+                    </div>
+                </div>
+                <!-- /upage-outer -->
+            </div>
+            <div class="upage hidden" id="DBQ">
+                <div class="upage-outer">
+                    <div class="uib-header header-bg container-group inner-element uib_w_83" data-uib="layout/header" data-ver="0">
+                        <h2>Disability Benefits</h2>
+                        <div class="widget-container wrapping-col single-centered"></div>
+                        <div class="widget-container content-area horiz-area wrapping-col left">
+                            <button class="btn widget uib_w_113 d-margins btn-info" data-uib="twitter%20bootstrap/button" data-ver="0"><i class="glyphicon glyphicon-arrow-left button-icon-left" data-position="left"></i>
+                            </button>
+                        </div>
+                        <div class="widget-container content-area horiz-area wrapping-col right">
+                            <button class="btn widget uib_w_114 d-margins btn-info" data-uib="twitter%20bootstrap/button" data-ver="0"><i class="glyphicon glyphicon-align-justify button-icon-left" data-position="left"></i>
+                            </button>
+                        </div>
+                    </div>
+                    <div id="DBQsub" class="upage-content ">
+
+                        <div class="grid grid-pad urow uib_row_21 row-height-21" data-uib="layout/row" data-ver="0">
+                            <div class="col uib_col_33 col-0_12-12" data-uib="layout/col" data-ver="0">
+                                <div class="widget-container content-area vertical-col">
+
+                                    <div class="widget uib_w_118 d-margins" data-uib="media/text" data-ver="0">
+                                        <div class="widget-container left-receptacle"></div>
+                                        <div class="widget-container right-receptacle"></div>
+                                        <div>
+                                           <p>&nbsp;</p>
+											<div id="DBQ">      
+												<?php 
+													query_posts('page_id=51');
+													the_post();
+													the_content();
+													/*
+													if (have_posts()) :
+													while (have_posts()) :
+													endwhile;
+													endif;
+													*/
+													wp_reset_query();
+												?>     
+											</div> <!-- word press content div end -->
+										<p>&nbsp;</p>
+                                        </div>
+                                    </div><span class="uib_shim"></span>
+                                </div>
+                            </div>
+                            <span class="uib_shim"></span>
+                        </div>
+                    </div>
+                </div>
+                <!-- /upage-outer -->
+            </div>
+            <div class="upage hidden" id="VA-DOD">
+                <div class="upage-outer">
+                    <div class="uib-header header-bg container-group inner-element uib_w_84" data-uib="layout/header" data-ver="0">
+                        <h2>Clinical Practices</h2>
+                        <div class="widget-container wrapping-col single-centered"></div>
+                        <div class="widget-container content-area horiz-area wrapping-col left">
+                            <button class="btn widget uib_w_115 d-margins btn-info" data-uib="twitter%20bootstrap/button" data-ver="0"><i class="glyphicon glyphicon-arrow-left button-icon-left" data-position="left"></i>
+                            </button>
+                        </div>
+                        <div class="widget-container content-area horiz-area wrapping-col right">
+                            <button class="btn widget uib_w_116 d-margins btn-info" data-uib="twitter%20bootstrap/button" data-ver="0"><i class="glyphicon glyphicon-align-justify button-icon-left" data-position="left"></i>
+                            </button>
+                        </div>
+                    </div>
+                    <div id="VA-DODsub" class="upage-content ">
+
+                        <div class="grid grid-pad urow uib_row_20 row-height-20" data-uib="layout/row" data-ver="0">
+                            <div class="col uib_col_32 col-0_12-12" data-uib="layout/col" data-ver="0">
+                                <div class="widget-container content-area vertical-col">
+
+                                    <div class="widget uib_w_117 d-margins" data-uib="media/text" data-ver="0">
+                                        <div class="widget-container left-receptacle"></div>
+                                        <div class="widget-container right-receptacle"></div>
+                                        <div>
+                                            <p>&nbsp;</p>
+											<div id="VA/DoD Evidenced-Based Clinical Practices">      
+												<?php 
+													query_posts('page_id=49');
+													the_post();
+													the_content();
+													/*
+													if (have_posts()) :
+													while (have_posts()) :
+													endwhile;
+													endif;
+													*/
+													wp_reset_query();
+												?>     
+											</div> <!-- word press content div end -->
+										<p>&nbsp;</p>
+                                        </div>
+                                    </div><span class="uib_shim"></span>
+                                </div>
+                            </div>
+                            <span class="uib_shim"></span>
+                        </div>
+                    </div>
+                </div>
+                <!-- /upage-outer -->
+            </div>
+            <div class="upage hidden" id="ServiceEra">
+                <div class="upage-outer">
+                    <div class="uib-header header-bg container-group inner-element uib_w_20" data-uib="layout/header" data-ver="0">
+                        <h2>Military Service </h2>
+                        <div class="widget-container wrapping-col single-centered"></div>
+                        <div class="widget-container content-area horiz-area wrapping-col left">
+                            <button class="btn widget uib_w_23 d-margins btn-info" data-uib="twitter%20bootstrap/button" data-ver="0" id="backms"><i class="glyphicon glyphicon-arrow-left button-icon-left" data-position="left"></i> 
+                            </button>
+                        </div>
+                        <div class="widget-container content-area horiz-area wrapping-col right">
+                            <button class="btn widget uib_w_22 d-margins btn-info" data-uib="twitter%20bootstrap/button" data-ver="0"><i class="glyphicon glyphicon-align-justify button-icon-left" data-position="left"></i> 
+                            </button>
+                        </div>
+                    </div>
+                    <div id="ServiceErasub" class="upage-content ">
+
+                        <div class="grid grid-pad urow uib_row_6 row-height-6" data-uib="layout/row" data-ver="0">
+                            <div class="col uib_col_15 col-0_4-12_4-4" data-uib="layout/col" data-ver="0">
+                                <div class="widget-container content-area vertical-col">
+                                    <a class="uib-graphic-button default-graphic-sizing default-image-sizing hover-graphic-button active-graphic-button default-graphic-button default-graphic-text widget uib_w_26 d-margins media-button-text-bottom centerbutton graphicbuttoncolor" data-uib="media/graphic_button"
+                                    data-ver="0">
+                                        <img src="Images/exp-oef.jpg">
+                                        <span class="uib-caption">OEF OIF OND 2001-Present</span>
+                                    </a><span class="uib_shim"></span>
+                                </div>
+                            </div>
+                            <div class="col uib_col_6 col-0_4-12_4-8" data-uib="layout/col" data-ver="0">
+                                <div class="widget-container content-area vertical-col">
+
+                                    <a class="uib-graphic-button default-graphic-sizing default-image-sizing hover-graphic-button active-graphic-button default-graphic-button default-graphic-text widget uib_w_28 d-margins media-button-text-bottom centerbutton graphicbuttoncolor" data-uib="media/graphic_button"
+                                    data-ver="0">
+                                        <img src="Images/cold_chosin85x85.jpg">
+                                        <span class="uib-caption">Bosnia 1992-1996</span>
+                                    </a><span class="uib_shim"></span>
+                                </div>
+                            </div>
+                            <div class="col uib_col_7 col-0_4-12_4-8" data-uib="layout/col" data-ver="0">
+                                <div class="widget-container content-area vertical-col">
+
+                                    <a class="uib-graphic-button default-graphic-sizing default-image-sizing hover-graphic-button active-graphic-button default-graphic-button default-graphic-text widget uib_w_27 d-margins media-button-text-bottom centerbutton graphicbuttoncolor" data-uib="media/graphic_button"
+                                    data-ver="0">
+                                        <img src="Images/desert-iraq-thumb.jpg">
+                                        <span class="uib-caption">Gulf War 1990-1991</span>
+                                    </a><span class="uib_shim"></span>
+                                </div>
+                            </div>
+                            <span class="uib_shim"></span>
+                        </div>
+
+                        <div class="grid grid-pad urow uib_row_9 row-height-9" data-uib="layout/row" data-ver="0">
+                            <div class="col uib_col_21 col-0_4-12_4-4" data-uib="layout/col" data-ver="0">
+                                <div class="widget-container content-area vertical-col">
+                                    <a class="uib-graphic-button default-graphic-sizing default-image-sizing hover-graphic-button active-graphic-button default-graphic-button default-graphic-text widget uib_w_31 d-margins media-button-text-bottom centerbutton graphicbuttoncolor" data-uib="media/graphic_button"
+                                    data-ver="0">
+                                        <img src="Images/radioactive-thumb.jpg">
+                                        <span class="uib-caption">Cold War 1945-1990</span>
+                                    </a><span class="uib_shim"></span>
+                                </div>
+                            </div>
+                            <div class="col uib_col_20 col-0_4-12_4-8" data-uib="layout/col" data-ver="0">
+                                <div class="widget-container content-area vertical-col">
+                                    <a class="uib-graphic-button default-graphic-sizing default-image-sizing hover-graphic-button active-graphic-button default-graphic-button default-graphic-text widget uib_w_30 d-margins media-button-text-bottom centerbutton graphicbuttoncolor" data-uib="media/graphic_button"
+                                    data-ver="0">
+                                        <img src="Images/faucet.jpg">
+                                        <span class="uib-caption">Camp Lejeune 1957-1987</span>
+                                    </a><span class="uib_shim"></span>
+                                </div>
+                            </div>
+                            <div class="col uib_col_16 col-0_4-12_4-8" data-uib="layout/col" data-ver="0">
+                                <div class="widget-container content-area vertical-col">
+
+                                    <a class="uib-graphic-button default-graphic-sizing default-image-sizing hover-graphic-button active-graphic-button default-graphic-button default-graphic-text widget uib_w_25 d-margins media-button-text-bottom centerbutton graphicbuttoncolor" data-uib="media/graphic_button"
+                                    data-ver="0">
+                                        <img src="Images/vietnam-vet-thumb.jpg">
+                                        <span class="uib-caption">Vietnam 1961-1975</span>
+                                    </a><span class="uib_shim"></span>
+                                </div>
+                            </div>
+                            <span class="uib_shim"></span>
+                        </div>
+
+                        <div class="grid grid-pad urow uib_row_10 row-height-10" data-uib="layout/row" data-ver="0">
+                            <div class="col uib_col_22 col-0_4-12_4-4" data-uib="layout/col" data-ver="0">
+                                <div class="widget-container content-area vertical-col">
+                                    <a class="uib-graphic-button default-graphic-sizing default-image-sizing hover-graphic-button active-graphic-button default-graphic-button default-graphic-text widget uib_w_29 d-margins media-button-text-bottom centerbutton graphicbuttoncolor" data-uib="media/graphic_button"
+                                    data-ver="0">
+                                        <img src="Images/exp-korea.jpg">
+                                        <span class="uib-caption">Korea 1950-1955</span>
+                                    </a><span class="uib_shim"></span>
+                                </div>
+                            </div>
+                            <div class="col uib_col_19 col-0_4-12_4-8" data-uib="layout/col" data-ver="0">
+                                <div class="widget-container content-area vertical-col">
+                                    <a class="uib-graphic-button default-graphic-sizing default-image-sizing hover-graphic-button active-graphic-button default-graphic-button default-graphic-text widget uib_w_33 d-margins media-button-text-bottom centerbutton graphicbuttoncolor" data-uib="media/graphic_button"
+                                    data-ver="0">
+                                        <img src="Images/exp-ww2.jpg">
+                                        <span class="uib-caption">World War II 1945-1946</span>
+                                    </a><span class="uib_shim"></span>
+                                </div>
+                            </div>
+                            <div class="col uib_col_17 col-0_4-12_4-8" data-uib="layout/col" data-ver="0">
+                                <div class="widget-container content-area vertical-col">
+                                    <a class="uib-graphic-button default-graphic-sizing default-image-sizing hover-graphic-button active-graphic-button default-graphic-button default-graphic-text widget uib_w_32 d-margins media-button-text-bottom centerbutton graphicbuttoncolor" data-uib="media/graphic_button"
+                                    data-ver="0">
+                                        <img src="Images/occupation-thumb.jpg">
+                                        <span class="uib-caption">Other Exposures</span>
+                                    </a><span class="uib_shim"></span>
+                                </div>
+                            </div>
+                            <span class="uib_shim"></span>
+                        </div>
+
+                        <div class="grid grid-pad urow uib_row_11 row-height-11" data-uib="layout/row" data-ver="0">
+                            <div class="col uib_col_23 col-0_12-12" data-uib="layout/col" data-ver="0">
+                                <div class="widget-container content-area vertical-col">
+
+                                    <a class="uib-graphic-button default-graphic-sizing default-image-sizing hover-graphic-button active-graphic-button default-graphic-button default-graphic-text widget uib_w_34 d-margins media-button-text-bottom centerbutton graphicbuttoncolor" data-uib="media/graphic_button"
+                                    data-ver="0">
+                                        <img src="Images/LVMAC_Circular_w_Motto Small.png">
+                                        <span class="uib-caption">Notes</span>
+                                    </a><span class="uib_shim"></span>
+                                </div>
+                            </div>
+                            <span class="uib_shim"></span>
+                        </div>
+                    </div>
+                </div>
+                <!-- /upage-outer -->
+            </div>
+            <div class="upage hidden" id="SixQuestions">
+                <div class="upage-outer">
+                    <div class="uib-header header-bg container-group inner-element uib_w_15" data-uib="layout/header" data-ver="0">
+                        <h2>Six Questions</h2>
+                        <div class="widget-container wrapping-col single-centered"></div>
+                        <div class="widget-container content-area horiz-area wrapping-col left">
+                            <button class="btn widget uib_w_24 d-margins btn-info" data-uib="twitter%20bootstrap/button" data-ver="0" id="backsix"><i class="glyphicon glyphicon-arrow-left button-icon-left" data-position="left"></i> 
+                            </button>
+                        </div>
+                        <div class="widget-container content-area horiz-area wrapping-col right">
+                            <button class="btn widget uib_w_21 d-margins btn-info" data-uib="twitter%20bootstrap/button" data-ver="0"><i class="glyphicon glyphicon-align-justify button-icon-left" data-position="left"></i> 
+                            </button>
+                        </div>
+                    </div>
+                    <div id="SixQuestionssub" class="upage-content ">
+
+                        <div class="grid grid-pad urow uib_row_5 row-height-5" data-uib="layout/row" data-ver="0">
+                            <div class="col uib_col_5 col-0_12-12" data-uib="layout/col" data-ver="0">
+                                <div class="widget-container content-area vertical-col">
+
+                                    <div class="list-group widget uib_w_16 d-margins" data-uib="twitter%20bootstrap/list_group" data-ver="0">
+                                        <a class="list-group-item allow-badge widget uib_w_17" data-uib="twitter%20bootstrap/list_item" data-ver="0"><span class="badge">0</span>
+                                            <h4 class="list-group-item-heading">Taking a Military Health History: Six Critical Questions (Introduction)</h4>
+                                            
+                                        </a>
+                                        <a class="list-group-item allow-badge widget uib_w_18" data-uib="twitter%20bootstrap/list_item" data-ver="0"><span class="badge">1</span>
+                                            <h4 class="list-group-item-heading">Have you or someone close to you ever serve in the military or the armed forces on active duty? Who?</h4>
+                                            
+                                        </a>
+                                        <a class="list-group-item allow-badge widget uib_w_19" data-uib="twitter%20bootstrap/list_item" data-ver="0"><span class="badge">2</span>
+                                            <h4 class="list-group-item-heading">When did you/he/she serve?</h4>
+                                            
+                                        </a><a class="list-group-item allow-badge widget uib_w_35 d-margins" data-uib="twitter%20bootstrap/list_item" data-ver="0"><span class="badge">3</span>
+   <h4 class="list-group-item-heading">Where did you/he/she serve?</h4>
+   
+</a><a class="list-group-item allow-badge widget uib_w_36 d-margins" data-uib="twitter%20bootstrap/list_item" data-ver="0"><span class="badge">4</span>
+   <h4 class="list-group-item-heading">What did you do?</h4>
+   
+</a><a class="list-group-item allow-badge widget uib_w_37 d-margins" data-uib="twitter%20bootstrap/list_item" data-ver="0"><span class="badge">5</span>
+   <h4 class="list-group-item-heading">Do you think your service has affected any part of your health?</h4>
+   
+</a><a class="list-group-item allow-badge widget uib_w_38 d-margins" data-uib="twitter%20bootstrap/list_item" data-ver="0"><span class="badge">6</span>
+   <h4 class="list-group-item-heading">Have you recieved medical care for this condition from any other provider, including military of VA?</h4>
+   
+</a>
+                                    </div><span class="uib_shim"></span>
+                                </div>
+                            </div>
+                            <span class="uib_shim"></span>
+                        </div>
+                    </div>
+                </div>
+                <!-- /upage-outer -->
+            </div>
+            <!-- /upage -->
+
+            <!-- /uwrap -->
+        </div>
+    </body>
+
+</html>
